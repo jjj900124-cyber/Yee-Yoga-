@@ -4,6 +4,10 @@
  * 字體：Varela Round (柔和圓潤)
  */
 
+ /* 1. 通用設定：使用 Border-Box 模式，確保寬度計算包含 Padding 和 Border */
+* {
+    box-sizing: border-box; 
+}
 /* ==================== 0. 全域設定與字體 ==================== */
 :root {
     --mint-green: #A2E4B8; /* 主色：薄荷綠 */
@@ -423,5 +427,54 @@ footer {
         font-size: 1.1em;
         line-height: 1.6;
         padding: 0 20px;
+    }
+}
+/* 2. 手機 RWD 修正：防止內容超出視口導致水平滾動 */
+@media (max-width: 768px) {
+    /* 針對所有元素，確保內容不會溢出 */
+    body, html {
+        overflow-x: hidden; /* 隱藏水平方向的溢出內容 */
+        width: 100%;
+    }
+    
+    /* 如果問題是某個特定區塊的 padding 造成，可以調整容器 */
+    .container {
+        padding: 0 15px; /* 確保容器左右有固定的安全邊距，不貼邊 */
+    }
+    
+    /* 確保圖片或影片等媒體內容不會溢出 */
+    img, video {
+        max-width: 100%;
+        height: auto;
+    }
+}
+/* 3. 手機 RWD 修正：優化 H2 標題，避免不必要的換行 */
+@media (max-width: 768px) {
+    /* 假設您的 H2 標題在 section#why-yoga 內 */
+    #why-yoga h2 { /* 請根據您的實際 ID 或 Class 進行調整 */
+        font-size: 1.5em; /* 縮小字體大小 */
+        line-height: 1.3;
+        padding: 0 10px; /* 增加左右填充，避免貼邊 */
+        margin-bottom: 20px; /* 調整與下方內容的間距 */
+    }
+}
+/* 4. 手機 RWD 修正：優化格子佈局 (假設使用 Flexbox) */
+@media (max-width: 768px) {
+    
+    /* 假設包含三個格子的容器 class 是 .feature-list */
+    .feature-list {
+        /* 如果它是 Flex 容器，讓它垂直堆疊 */
+        flex-direction: column; 
+        /* 確保元素之間有間距 */
+        gap: 15px; 
+    }
+    
+    /* 假設每個格子項目 class 是 .feature-item */
+    .feature-item {
+        /* 讓每個項目在手機上佔據整行寬度 (例如 90%) */
+        width: 90%; 
+        max-width: 400px; /* 避免在平板或大手機上項目過寬 */
+        margin: 0 auto; /* 確保項目置中 */
+        padding: 15px; /* 調整格子內部的填充，避免過大 */
     }
 }
