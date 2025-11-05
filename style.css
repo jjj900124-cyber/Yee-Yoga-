@@ -1,0 +1,402 @@
+/*
+ * Yee，Yoga! 網頁樣式表 (style.css)
+ * 主題色：薄荷綠 (#A2E4B8)
+ * 字體：Varela Round (柔和圓潤)
+ */
+
+/* ==================== 0. 全域設定與字體 ==================== */
+:root {
+    --mint-green: #A2E4B8; /* 主色：薄荷綠 */
+    --deep-green: #4CAF50; /* 輔助色：深綠色，用於文字或按鈕 */
+    --light-bg: #F8FFF8;   /* 淺色背景，增加層次感 */
+    --text-color: #333333; /* 主要文字顏色 */
+    --link-hover: #71C69E; /* 連結懸停色 */
+}
+
+/* 將柔和字體應用於所有元素 */
+body {
+    font-family: 'Varela Round', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    line-height: 1.6; /* 增加行高，提升閱讀舒適度 */
+    background-color: #FFFFFF;
+}
+
+/* 重置連結樣式 */
+a {
+    text-decoration: none;
+    color: var(--deep-green);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* 內文容器 - 讓內容居中 */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 標題樣式 */
+h1 {
+    font-size: 3em;
+    color: var(--mint-green);
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--deep-green);
+    position: relative;
+}
+
+/* 為標題增加可愛的底線裝飾 */
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--mint-green);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ==================== 1. 導覽列 (Header/Navbar) ==================== */
+#navbar {
+    background-color: #FFFFFF; /* 白色背景，保持清新感 */
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 輕微陰影，增加立體感 */
+    position: sticky; /* 讓導覽列固定在頂部 */
+    top: 0;
+    z-index: 1000;
+}
+
+#navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar nav a {
+    margin-left: 25px;
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+#navbar nav a:hover {
+    color: var(--mint-green);
+}
+/* 導覽列滾動時的狀態變化樣式 */
+#navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95); /* 輕微的透明度 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* 更明顯的陰影，讓它浮起來 */
+}
+/* Logo 樣式 */
+#main-logo {
+    font-size: 1.6em; /* 在導覽列中縮小一點 */
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: var(--mint-green);
+    padding: 5px 12px;
+    border-radius: 4px;
+}
+
+/* ==================== 2. 區塊通用樣式 ==================== */
+section {
+    padding: 100px 0; /* 增加區塊上下間距 */
+}
+
+/* 淺色背景區塊 */
+#about, #results {
+    background-color: var(--light-bg);
+}
+/* ==================== 10. 關於我們 - 圖片畫廊樣式 ==================== */
+.image-gallery {
+    display: flex;        /* 啟用 Flexbox 佈局 */
+    gap: 20px;            /* 圖片之間的間距 */
+    margin-top: 30px;
+}
+
+.gallery-img {
+    width: 50%;           /* 讓每張圖片佔據一半寬度 */
+    height: auto;
+    object-fit: cover;    /* 確保圖片不變形且填滿空間 */
+    border-radius: 12px;  /* 柔和圓角 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 柔和陰影 */
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.02); /* 滑鼠懸停時輕微放大，增加互動性 */
+}
+
+
+/* 響應式設計：在小螢幕上讓圖片堆疊 */
+@media (max-width: 768px) {
+    .image-gallery {
+        flex-direction: column; /* 垂直堆疊 */
+        gap: 15px;
+    }
+    
+    .gallery-img {
+        width: 100%; /* 圖片佔滿整個手機螢幕寬度 */
+    }
+}
+/* ==================== 3. 首頁橫幅 (Hero) ==================== */
+#hero {
+    /* 這裡可以設置一張柔和的背景圖，例如瑜珈墊、綠色葉子等 */
+    background: var(--light-bg) url('your-yoga-image.jpg') no-repeat center center;
+    background-size: cover;
+    color: var(--text-color);
+    height: 60vh; /* 佔據螢幕高度的 60% */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* 為了在圖片上保持文字清晰，可以增加一個柔和的背景色 */
+    background-blend-mode: overlay; 
+    /* 這裡暫時用薄荷綠疊加在可能有的圖片上 */
+    background-color: rgba(162, 228, 184, 0.2); 
+}
+
+#hero h1 {
+    font-size: 3.5em;
+    color: var(--deep-green);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+#hero p {
+    font-size: 1.5em;
+}
+
+/* ==================== 4. 為什麼做瑜珈 (Why Yoga) - 卡片佈局 ==================== */
+#why-yoga .reason-cards {
+    display: flex;
+    gap: 30px; /* 卡片間距 */
+    text-align: center;
+    flex-wrap: wrap; /* 手機上會換行 */
+}
+
+#why-yoga .card {
+    flex: 1; /* 平分空間 */
+    min-width: 250px;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 柔和陰影 */
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--mint-green); /* 薄荷綠裝飾線 */
+}
+
+#why-yoga .card:hover {
+    transform: translateY(-5px); /* 滑鼠懸停時微抬升 */
+}
+
+#why-yoga .card h3 {
+    color: var(--mint-green);
+    font-size: 1.4em;
+    margin-top: 0;
+}
+
+/* ==================== 5. 成果 (Results) - 見證引用 ==================== */
+#results blockquote {
+    font-style: italic;
+    font-size: 1.2em;
+    border-left: 5px solid var(--mint-green);
+    padding-left: 20px;
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+/* ==================== 6. 聯絡資訊 (Contact) ==================== */
+#contact {
+    background-color: var(--mint-green);
+    color: #FFFFFF;
+}
+
+#contact h2 {
+    color: #FFFFFF;
+}
+
+#contact h2::after {
+    background-color: #FFFFFF;
+}
+
+#contact p {
+    font-size: 1.1em;
+    margin: 15px 0;
+}
+
+/* ==================== 7. 頁腳 (Footer) ==================== */
+footer {
+    background-color: #EEEEEE;
+    color: #666;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+/* ==================== 8. 響應式設計 (RWD) - 適用於手機與平板 ==================== */
+@media (max-width: 768px) {
+    
+    /* 導覽列 - 在手機上將連結垂直排列 */
+    #navbar .container {
+        flex-direction: column;
+    }
+    
+    #navbar nav {
+        margin-top: 10px;
+    }
+
+    #navbar nav a {
+        margin: 0 10px;
+        font-size: 1em;
+    }
+
+    /* 區塊標題 */
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    section {
+        padding: 50px 0; /* 縮小手機上的間距 */
+    }
+
+    /* 卡片佈局 - 確保在手機上卡片是垂直堆疊 */
+    #why-yoga .reason-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #why-yoga .card {
+        min-width: 100%;
+    }
+}
+/* ==================== 9. 圖標樣式 (Yoga Icons) ==================== */
+.yoga-icon {
+    font-size: 3.5em; /* 增大圖標尺寸 */
+    color: var(--mint-green); /* 設定為薄荷綠 */
+    margin-bottom: 15px;
+    display: block; /* 確保圖標佔據一行 */
+}
+
+/* 讓卡片中的 h3 標題文字顏色略深，形成對比 */
+#why-yoga .card h3 {
+    color: var(--deep-green); 
+    font-size: 1.4em;
+    margin-top: 0;
+}
+/* ==================== 10. 關於我們 - 圖片畫廊樣式 (已調整尺寸) ==================== */
+.image-gallery {
+    display: flex;        
+    justify-content: center; /* **新增：讓圖片畫廊容器居中** */
+    gap: 20px;            
+    margin-top: 30px;
+    margin-bottom: 30px; /* 增加下方間距 */
+}
+
+.gallery-img {
+    /* **調整：每張圖片佔據容器寬度的 40% (原為 50%)** */
+    width: 40%;           
+    max-width: 400px;     /* **新增：限制圖片的最大寬度，讓它不會過大** */
+    height: auto;
+    object-fit: cover;    
+    border-radius: 12px;  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03); /* 微調放大比例 */
+}
+
+
+/* 響應式設計：在小螢幕上讓圖片堆疊 (保持 100% 寬度，易於查看) */
+@media (max-width: 768px) {
+    .image-gallery {
+        flex-direction: column; 
+        gap: 15px;
+        align-items: center; /* **新增：在手機上堆疊後居中** */
+    }
+    
+    .gallery-img {
+        width: 90%; /* 在手機上設定為 90% 寬度，兩側留白，視覺更舒服 */
+        max-width: none; /* 移除最大寬度限制 */
+    }
+}
+/* ==================== 10. 關於我們 - 圖文交錯佈局樣式 ==================== */
+.about-item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+    /* 預設是 row (圖左、文右)，但我們想要預設是 圖右、文左 */
+    flex-direction: row-reverse; /* 讓沒有 item-reverse 的項目實現 '圖右 文左' (反轉排列) */
+}
+
+.item-img {
+    flex: 0 0 45%;          /* 圖片佔據約 45% 寬度 */
+}
+
+.item-content {
+    flex: 1;                /* 文字內容佔據剩餘空間 */
+}
+
+.item-content h3 {
+    color: var(--deep-green);
+    font-size: 1.8em;
+    margin-top: 0;
+}
+
+.gallery-img {
+    width: 100%;            /* 圖片在容器內佔滿 100% */
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* 核心邏輯：第一組 (item-reverse) 實現 '圖左 文右' */
+.about-item.item-reverse {
+    flex-direction: row; /* 恢復為正常順序 (圖左、文右) */
+}
+
+/* 響應式設計：在手機上讓圖文垂直堆疊 */
+@media (max-width: 768px) {
+    .about-item {
+        flex-direction: column; /* 垂直堆疊 */
+        text-align: center;
+        gap: 20px;
+    }
+    
+    /* 讓反轉的項目在手機上恢復為圖片在上文字在下 */
+    .about-item.item-reverse {
+        flex-direction: column; 
+    }
+    
+    .item-img {
+        flex: auto;
+        width: 90%; /* 在手機上佔據 90% 寬度 */
+        order: -1; /* 確保圖片永遠在文字上方 (這是針對第一個項目，第二個項目因為 flex-direction: column 已經在上) */
+    }
+
+    .about-item.item-reverse .item-img {
+        order: 0; /* 在第二個項目中，讓圖片在文字下方 */
+    }
+    
+    .item-content {
+        flex: auto;
+        padding: 0 5%;
+    }
+}
